@@ -1,0 +1,14 @@
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+section h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.section {
+    margin: 20px;
+}

@@ -1,0 +1,27 @@
+ 
+ .carritoIcon span{
+     color: #fff;
+    margin-left: 5px; 
+    font-weight: bold;
+    font-size: 1.2rem;
+ }
+
+.carritoIcon {
+    padding: 5px 10px;
+    border: 2px solid #df5b03;
+    border-radius: 10px;
+    display: flex;
+    background-color:#e2630f;
+    align-content: center;
+    align-items: center;
+}
+
+.carritoIcon:hover {
+    background-color: #f26b0f;
+    cursor: pointer;
+}
+
+.carritoIcon .IconCart {
+    font-size: 1.8rem;
+    color: #fff;
+}
