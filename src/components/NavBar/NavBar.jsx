@@ -10,12 +10,12 @@ const NavBar = () => {
   return (
     <Navbar id="navbar" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#">TiendaOnline</Navbar.Brand>
+        <Navbar.Brand href="#"> <img src="./img/logo.svg" className="logo" alt="" /> </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto navbar-nav">
             <Nav.Link href="#" className="nav-link">Home</Nav.Link>
-            <Nav.Link href="#recetas" className="nav-link">Recetas</Nav.Link>
+            <Nav.Link href="#recetasContainer" className="nav-link">Recetas</Nav.Link>
             <Nav.Link href="#" className="nav-link">Novedades</Nav.Link>
             <NavDropdown
               title="Categorias"

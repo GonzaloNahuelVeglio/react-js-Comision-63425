@@ -1,4 +1,20 @@
+#recetasContainer h1,
+#recetasContainer p {
+
+  text-align: center;
+}
+
+#recetasContainer p span {
+  font-weight: lighter;
+  font-style: italic;
+}
+
 .recetasContainer {
-text-align: center;
-  margin-top: 20px;
+  display: flex;
+  padding: 10px;
+}
+
+#recetasContainer {
+  padding: 15px 0;
+
 }

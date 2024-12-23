@@ -1,19 +1,23 @@
-import React from 'react'
-import './RecetasContainer.css'
-import Recetas from '../Recetas/Recetas'
+import React from "react";
+import "./RecetasContainer.css";
+import Recetas from "../Recetas/Recetas";
 const RecetasContainer = () => {
   return (
-     <div className='recetasContainer' id='recetas'>
-         <h1>Recetas</h1>
-         <p>En esta sección encontrarás las recetas más deliciosas y fáciles de preparar.</p>
-        <div className="container">
-            <Recetas nombre="Receta 1" />
-            <Recetas nombre="Receta 2" />
-            <Recetas nombre="Receta 3" />
-            <Recetas nombre="Receta 4" />
-        </div>
-     </div>
-  )
-}
+    <section className="container" id="recetasContainer">
+      <h1>Recetas</h1>
+      <p>
+        En esta sección encontrarás las recetas más deliciosas y fáciles de
+        preparar. <br /> <span>Con el botón COMPRAR, adquiriras los ingredientes</span>
+      </p>
+      <div className="recetasContainer" id="recetas">
+        <Recetas nombre="Pan Dulce" />
+        <Recetas nombre="Vitel Tone" />
+        <Recetas nombre="Pan de manteca" />
+        <Recetas nombre="Pizzas" />
+        <Recetas nombre="Fideos con salsa" />
+      </div>
+    </section>
+  );
+};
 
-export default RecetasContainer
+export default RecetasContainer;

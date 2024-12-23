@@ -1,28 +1,59 @@
-.recetaContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
+ section .cardReceta {
+   width: 0px;
+   flex-grow: 1;
+   object-fit: cover;
+   opacity: 0.8;
+   transition: 0.5s ease;
+   border: 1px solid black;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   background: #f9f9f9;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   height: 400px;
+   object-fit: cover;
+   box-shadow: 4px 4px 10px 1px rgb(0 0 0 / 14%);
+ }
 
-.recetaContainer .receta{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-    padding: 20px; 
-    background-color: #fff;
-}
+ section .cardReceta:first-child {
+   border-radius: 10px 0 0 10px;
+ }
 
-.recetaContainer img {
-  height: 50%;
-  width: 50%;
-  border-radius: 10px;
-}
+ section .cardReceta:last-child {
+   border-radius: 0 10px 10px 0;
+ }
+
+ .descripReceta {
+   padding: 10px;
+   flex-grow: 1;
+   overflow: hidden;
+   flex-shrink: 0;
+ }
+
+ .descripReceta img {
+   object-fit: cover;
+   height: 300px;
+   border-radius: 10px;
+   margin: 5px;
+ }
+
+ .nombreReceta {
+   background: #f26b0f;
+   height: 400px;
+   /* flex-shrink: 0; */
+   width: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   white-space: nowrap;  
+ }
+
+ .nombreReceta h2 {
+   padding: 10px 0;
+   transform: rotate(270deg);
+ }
+
+ section .cardReceta:hover {
+   width: 300px;
+   opacity: 1;
+ }

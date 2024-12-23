@@ -1,32 +1,33 @@
-/* NavBar.css */
 
-/* Fondo del navbar */
+
+
 #navbar {
-    background-color: #F26B0F; /* Color de fondo personalizado */
+    background-color: #F26B0F; 
     padding: 10px;
-    border-bottom: 3px solid #ffffff; /* Borde inferior */
+    border-bottom: 3px solid #ffffff; 
   }
   
-  /* Estilo de los enlaces */
+  
   .nav-link {
-    color: #ffffff; /* Color blanco para los enlaces */
-    margin-right: 15px; /* Espaciado entre enlaces */
-    font-weight: bold; /* Texto en negrita */
-    text-transform: uppercase; /* Texto en mayúsculas */
+    color: #ffffff; 
+    margin-right: 15px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
   }
   
   .nav-link:hover {
-    background: rgb(240,165,0);
-    background: linear-gradient(180deg, rgba(240,165,0,0.2) 0%, rgba(213,146,0,0.2) 100%); 
+    font-weight: bold; 
+    
+    background: linear-gradient(180deg, rgba(240,165,0,0.15) 0%, rgba(213,146,0,0.2) 100%); 
   }
   
-  /* Dropdown personalizado */
+  
   #basic-nav-dropdown {
     color: #ffffff;
   }
   
   .navbar-brand {
-    color: #f0a500; /* Color de la marca */
+    color: #f0a500; 
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -34,28 +35,38 @@
   .navbar-brand:hover {
     color: #ffffff;
   }
+
+ 
   
-  /* Flex para alinear elementos del navbar */
+  
   .navbar-nav {
     display: flex;
     align-items: center;
   } 
 
-
-  /* Contenedor principal del navbar */
-#navbar .container {
-    display: flex;
-    justify-content: space-between; /* Separar la marca y los enlaces */
-    align-items: center; /* Alinear verticalmente los elementos */
+  .logo {
+    height: 50px; 
+    max-height: 100%; 
   }
   
-  /* Alineación de los enlaces */
+
+  #navbar .navbar-nav {
+    margin: 0 auto;
+  }
+  
+#navbar .container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  }
+  
+  
   .navbar-nav {
     display: flex;
-    gap: 15px; /* Espacio entre enlaces */
+    gap: 15px; 
   }
   
   .navbar-collapse {
-    justify-content: flex-end; /* Alinear elementos hacia la derecha si es necesario */
+    justify-content: flex-end; 
   }
   
