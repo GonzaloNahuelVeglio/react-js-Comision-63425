@@ -1,12 +1,12 @@
  
- .carritoIcon span{
+ .cartWidget span{
      color: #fff;
     margin-left: 5px; 
     font-weight: bold;
     font-size: 1.2rem;
  }
 
-.carritoIcon {
+.cartWidget {
     padding: 5px 10px;
     border: 2px solid #df5b03;
     border-radius: 10px;
@@ -16,12 +16,12 @@
     align-items: center;
 }
 
-.carritoIcon:hover {
+.cartWidget:hover {
     background-color: #f26b0f;
     cursor: pointer;
 }
 
-.carritoIcon .IconCart {
+.cartWidget .IconCart {
     font-size: 1.8rem;
     color: #fff;
 }

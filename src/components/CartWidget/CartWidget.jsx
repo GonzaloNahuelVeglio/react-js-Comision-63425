@@ -1,13 +1,13 @@
 import React from 'react'
-import "./CarritoIcon.css"
+import "./CartWidget.css"
 import { IoMdCart } from "react-icons/io";
-const CarritoIcon=()=> {
+const CartWidget=()=> {
    return (
-    <div className='carritoIcon'>
+    <div className='cartWidget'>
      <span className='IconCart'><IoMdCart /> </span>
      <span>3 </span>
     </div>
   )
 }
  
-export default CarritoIcon
+export default CartWidget

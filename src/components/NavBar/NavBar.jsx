@@ -1,5 +1,5 @@
 import React from "react";
-import CarritoIcon from "../CarritoIcon/CarritoIcon";
+import CartWidget from "../CartWidget/CartWidget";
 import "./NavBar.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -29,7 +29,7 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <CarritoIcon className="carrito-icon" />
+        <CartWidget className="carrito-icon" />
       </Container>
     </Navbar>
   );
