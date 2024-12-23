@@ -22,17 +22,4 @@ Actualmente, se ha completado:
 - **Maqueta inicial**: Prototipo del diseño visual de las páginas principales.
 - **Estructura básica del proyecto**: Componentes y estilos para las páginas clave.
 
-## 🛠️ Instalación y Uso
-
-Puedes clonar este repositorio y ver la maqueta inicial ejecutándose localmente:
-
-1. Clona este repositorio: 
-   git clone https://github.com/tu-usuario/supermercado-react.git
-   cd supermercado-react
-
-2. Instala las dependencias
-    npm install
-3. Inicia el servidor de desarrollo:
-    npm run dev
-4. Abre la aplicación en tu navegador:
-    http://localhost:5173
+ 
