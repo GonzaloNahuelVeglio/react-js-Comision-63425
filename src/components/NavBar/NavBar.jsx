@@ -1,37 +1,64 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 import "./NavBar.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavBar = () => {
   return (
-    <Navbar id="navbar" expand="lg" sticky="top">
-      <Container>
-        <Navbar.Brand href="#"> <img src="./img/logo.svg" className="logo" alt="" /> </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto navbar-nav">
-            <Nav.Link href="#" className="nav-link">Home</Nav.Link>
-            <Nav.Link href="#recetasContainer" className="nav-link">Recetas</Nav.Link>
-            <Nav.Link href="#" className="nav-link">Novedades</Nav.Link>
-            <NavDropdown
-              title="Categorias"
-              id="basic-nav-dropdown"
-              className="nav-link"
-            >
-              <NavDropdown.Item href="#">Bebidas</NavDropdown.Item>
-              <NavDropdown.Item href="#">Almacén</NavDropdown.Item>
-              <NavDropdown.Item href="#">Panadería</NavDropdown.Item>
-              <NavDropdown.Item href="#">Limpieza</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-        <CartWidget className="carrito-icon" />
-      </Container>
-    </Navbar>
+    <nav className="navbar">
+      <div className="navbar-container">
+        {/* Logo */}
+        <div className="navbar-brand">
+          <Link to="/" className="">
+            <img src="../img/logo.svg" className="logo" alt="Logo" />
+          </Link>
+        </div>
+
+        {/* Menu */}
+        <div className="navbar-menu">
+          <NavLink to="/" className="nav-link">
+            Home
+          </NavLink>
+          <a href="#RecetasContainer" className="nav-link">
+            Recetas
+          </a>
+
+          {/* Dropdown menu */}
+          <div className="dropdown nav-link">
+            <a className="dropdown-toggle">Categorias</a>
+            <div className="dropdown-menu">
+              <NavLink to="/categoria/almacen" className="dropdown-item">
+                Almacen
+              </NavLink>
+              <NavLink
+                to="/categoria/cuidado-personal"
+                className="dropdown-item"
+              >
+                Cuidado personal
+              </NavLink>
+              <NavLink to="/categoria/panaderia" className="dropdown-item">
+                Panadería
+              </NavLink>
+              <NavLink to="/categoria/lacteos" className="dropdown-item">
+                Lacteos
+              </NavLink>
+              <NavLink to="/categoria/limpieza" className="dropdown-item">
+                Limpieza
+              </NavLink>
+            </div>
+          </div>
+          <a href="#ContactoContainer" className="nav-link">
+            Contacto
+          </a>
+
+        </div>
+
+        {/* Cart Widget */}
+        <div className="navbar-cart">
+          <CartWidget className="carrito-icon" />
+        </div>
+      </div>
+    </nav>
   );
 };
 

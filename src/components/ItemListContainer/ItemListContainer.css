@@ -9,7 +9,14 @@
     font-family: 'Indie Flower', cursive;
   }
 
+.container h1{
+  text-align: center;
+}
 
+.itemListContainer{ 
+  margin-top: 20px;
+  padding: 20px;
+}
 .itemListContainer_greeting {
   font-weight: bold;
   margin-bottom: 1rem; 

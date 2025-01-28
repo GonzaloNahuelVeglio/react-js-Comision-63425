@@ -1,0 +1,43 @@
+.item {
+    width: 250px;
+    padding: 20px;
+    border: 1px solid #a78080;
+    margin: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+}
+
+.item:hover {
+    border: 2px solid #918061; 
+}
+
+.item img {
+    width: 100%; 
+}
+
+.item h3 {
+    text-align: center;
+    margin: 10px 0 0 0;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.item p {
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    text-align: center;
+    color: red;
+    font-size: 1.8rem;
+}
+
+.item .btn {
+    padding: 10px;
+    border: none;
+    background-color: #e3061d;
+    color:#fafafa
+}
+.item .btn:hover { 
+    color:#fafafa;
+    background-color: #b91021;
+}

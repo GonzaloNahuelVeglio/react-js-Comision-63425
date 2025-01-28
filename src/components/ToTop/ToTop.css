@@ -1,0 +1,24 @@
+.ToTop{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    background-color: #ff5100;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+.ToTop:hover{
+    background-color: #dd500f;
+}
+.IconToTop svg{
+    font-size: 1.5em;
+    color: #fafafa;
+}

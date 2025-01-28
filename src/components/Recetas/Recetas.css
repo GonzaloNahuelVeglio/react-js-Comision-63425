@@ -1,59 +1,99 @@
- section .cardReceta {
-   width: 0px;
-   flex-grow: 1;
-   object-fit: cover;
-   opacity: 0.8;
-   transition: 0.5s ease;
-   border: 1px solid black;
-   overflow: hidden;
-   display: flex;
-   flex-direction: column;
-   background: #f9f9f9;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   height: 400px;
-   object-fit: cover;
-   box-shadow: 4px 4px 10px 1px rgb(0 0 0 / 14%);
- }
+section .cardReceta {
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: 0.5s ease;
+  border: 1px solid black;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+  box-shadow: 4px 4px 10px 1px rgb(0 0 0 / 14%);
+  height: 400px;
+}
 
- section .cardReceta:first-child {
-   border-radius: 10px 0 0 10px;
- }
+section .cardReceta:first-child {
+  border-radius: 10px 0 0 10px;
+}
 
- section .cardReceta:last-child {
-   border-radius: 0 10px 10px 0;
- }
+section .cardReceta:last-child {
+  border-radius: 0 10px 10px 0;
+}
 
- .descripReceta {
-   padding: 10px;
-   flex-grow: 1;
-   overflow: hidden;
-   flex-shrink: 0;
- }
+section .cardReceta:hover {
+  width: 300px;
+  opacity: 1;
+}
 
- .descripReceta img {
-   object-fit: cover;
-   height: 300px;
-   border-radius: 10px;
-   margin: 5px;
- }
+.descripReceta {
+  padding: 10px;
+  flex-grow: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
 
- .nombreReceta {
-   background: #f26b0f;
-   height: 400px;
-   /* flex-shrink: 0; */
-   width: 100px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   white-space: nowrap;  
- }
+.descripReceta .btn {
+  margin: 10px;
+  padding: 10px;
+  background: #f26b0f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  align-self: flex-end;
+  margin-top: 10px;
+}
 
- .nombreReceta h2 {
-   padding: 10px 0;
-   transform: rotate(270deg);
- }
+.descripReceta .btn:hover {
+  background: #d65e0d;
+  color: white; 
 
- section .cardReceta:hover {
-   width: 300px;
-   opacity: 1;
- }
+}
+
+.descripReceta img {
+  object-fit: cover;
+  height: 100px;
+  border-radius: 10px;
+  margin: 5px;
+  width: 100%;
+}
+
+.nombreReceta {
+  background: #f26b0f;
+  height: 400px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nombreReceta h2 {
+  padding: 10px 0;
+  transform: rotate(270deg);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.descripDetalle {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientesContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ingredientesContainer ul {
+  flex-grow: 1;
+  height: 140px;
+}

@@ -1,0 +1,50 @@
+.success{
+    background-color: #008000ad;
+    color: #fafafa;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.error{
+    margin-top: 10px;
+    background-color: #c10000cc;
+    color: #fafafa;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form input, form textarea{ 
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+}
+
+form button{
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+form button:hover{
+    background-color: #f0f0f0;
+}
+h2, p{
+    text-align: center;
+}
