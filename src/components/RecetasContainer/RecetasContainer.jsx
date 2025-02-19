@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getRecetas } from "../../asyncmock";
 import "./RecetasContainer.css";
-import Recetas from "../Recetas/Recetas";
+import Recetas from "../Recetas/Recetas"; 
 
 const RecetasContainer = () => {
   const [recetas, setRecetas] = useState([]);
@@ -30,7 +30,7 @@ const RecetasContainer = () => {
             img={receta.img}
           />
         ))}
-      </div>
+      </div> 
     </section>
   );
 };

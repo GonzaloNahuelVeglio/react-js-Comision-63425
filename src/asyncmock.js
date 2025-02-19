@@ -2,7 +2,7 @@ const productos = [
     {
         "idItem": "1",
         "nombre": "Arroz",
-        "categoria": "Almacen",
+        "categoria": "Almacen", //1
         "precio": 350,
         "img": "../img/arroz.webp",
         "stock": 204,
@@ -11,7 +11,7 @@ const productos = [
     {
         "idItem": "2",
         "nombre": "Lentejas",
-        "categoria": "Almacen",
+        "categoria": "Almacen", //1
         "precio": 200,
         "img": "../img/lentejas.webp",
         "stock": 10,
@@ -20,7 +20,7 @@ const productos = [
     {
         "idItem": "3",
         "nombre": "Aceite",
-        "categoria": "Almacen",
+        "categoria": "Almacen", //1
         "precio": 900,
         "img": "../img/aceite.webp",
         "stock": 237,
@@ -29,7 +29,7 @@ const productos = [
     {
         "idItem": "4",
         "nombre": "Azúcar",
-        "categoria": "Almacen",
+        "categoria": "Almacen", //1
         "precio": 1020,
         "img": "../img/azucar.webp",
         "stock": 231,
@@ -38,7 +38,7 @@ const productos = [
     {
         "idItem": "5",
         "nombre": "Pan Molde",
-        "categoria": "Panaderia",
+        "categoria": "Panaderia", //2
         "precio": 850,
         "img": "../img/pan_molde.webp",
         "stock": 232,
@@ -47,7 +47,7 @@ const productos = [
     {
         "idItem": "6",
         "nombre": "Croissants",
-        "categoria": "Panaderia",
+        "categoria": "Panaderia", //2
         "precio": 500,
         "img": "../img/croissants.webp",
         "stock": 188,
@@ -56,7 +56,7 @@ const productos = [
     {
         "idItem": "7",
         "nombre": "Donuts",
-        "categoria": "Panaderia",
+        "categoria": "Panaderia", //2
         "precio": 600,
         "img": "../img/donuts.webp",
         "stock": 188,
@@ -65,7 +65,7 @@ const productos = [
     {
         "idItem": "8",
         "nombre": "Pan",
-        "categoria": "Panaderia",
+        "categoria": "Panaderia", //2
         "precio": 680,
         "img": "../img/pan.webp",
         "stock": 225,
@@ -74,7 +74,7 @@ const productos = [
     {
         "idItem": "9",
         "nombre": "Papel Higiénico",
-        "categoria": "Limpieza",
+        "categoria": "Limpieza", //3
         "precio": 450,
         "img": "../img/papel_higienico.webp",
         "stock": 215,
@@ -83,7 +83,7 @@ const productos = [
     {
         "idItem": "10",
         "nombre": "Jabón Liquido",
-        "categoria": "Limpieza",
+        "categoria": "Limpieza", //3
         "precio": 2100,
         "img": "../img/jabon_liquido.webp",
         "stock": 248,
@@ -92,7 +92,7 @@ const productos = [
     {
         "idItem": "11",
         "nombre": "Detergente",
-        "categoria": "Limpieza",
+        "categoria": "Limpieza", //3
         "precio": 600,
         "img": "../img/detergente.webp",
         "stock": 226,
@@ -101,7 +101,7 @@ const productos = [
     {
         "idItem": "12",
         "nombre": "Esponjas",
-        "categoria": "Limpieza",
+        "categoria": "Limpieza", //3
         "precio": 1000,
         "img": "../img/esponjas.webp",
         "stock": 208,
@@ -110,7 +110,7 @@ const productos = [
     {
         "idItem": "13",
         "nombre": "Shampoo",
-        "categoria": "cuidado-personal",
+        "categoria": "cuidado-personal", //4
         "precio": 2500,
         "img": "../img/shampoo.webp",
         "stock": 197,
@@ -119,7 +119,7 @@ const productos = [
     {
         "idItem": "14",
         "nombre": "Crema Dental",
-        "categoria": "cuidado-personal",
+        "categoria": "cuidado-personal", //4
         "precio": 950,
         "img": "../img/crema_dental.webp",
         "stock": 160,
@@ -128,7 +128,7 @@ const productos = [
     {
         "idItem": "15",
         "nombre": "Jabón",
-        "categoria": "cuidado-personal",
+        "categoria": "cuidado-personal", //4
         "precio": 600,
         "img": "../img/jabon.webp",
         "stock": 195,
@@ -137,7 +137,7 @@ const productos = [
     {
         "idItem": "16",
         "nombre": "Cuchillas de Afeitar",
-        "categoria": "cuidado-personal",
+        "categoria": "cuidado-personal", //4
         "precio": 650,
         "img": "../img/cuchillas_afeitar.webp",
         "stock": 201,
@@ -146,7 +146,7 @@ const productos = [
     {
         "idItem": "17",
         "nombre": "Leche Entera",
-        "categoria": "lacteos",
+        "categoria": "lacteos", //5
         "precio": 1100,
         "img": "../img/leche_entera.webp",
         "stock": 172,
@@ -155,7 +155,7 @@ const productos = [
     {
         "idItem": "18",
         "nombre": "Yogur Natural",
-        "categoria": "lacteos",
+        "categoria": "lacteos", //5
         "precio": 490,
         "img": "../img/yogur_natural.webp",
         "stock": 165,
@@ -164,7 +164,7 @@ const productos = [
     {
         "idItem": "19",
         "nombre": "Manteca",
-        "categoria": "lacteos",
+        "categoria": "lacteos", //5
         "precio": 350,
         "img": "../img/manteca.webp",
         "stock": 247,
@@ -173,7 +173,7 @@ const productos = [
     {
         "idItem": "20",
         "nombre": "Queso cremoso",
-        "categoria": "lacteos",
+        "categoria": "lacteos", //5
         "precio": 2500,
         "img": "../img/queso_cremoso.webp",
         "stock": 225,

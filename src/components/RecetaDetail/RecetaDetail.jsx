@@ -27,6 +27,7 @@ const RecetaDetail = () => {
           <li key={index}>{ingrediente}</li>
         ))}
       </ul>
+        <button>Agregar al carrito</button>
       <h2>Preparación:</h2>
       <ol>
         {receta.pasos.map((paso, index) => (

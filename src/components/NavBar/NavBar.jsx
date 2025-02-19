@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
+import { db } from "../../services/config";
+import { collection, getDocs } from "firebase/firestore";
 import "./NavBar.css";
+import { FaUser } from "react-icons/fa";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavBar = () => {
+  const usuario = useAuth();
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    const obtenerCategorias = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "categorias"));
+        const categoriasArray = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCategorias(categoriasArray);
+      } catch (error) {
+        console.error("Error obteniendo categorías:", error);
+      }
+    };
+
+    obtenerCategorias();
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -14,48 +38,44 @@ const NavBar = () => {
           </Link>
         </div>
 
-        {/* Menu */}
+        {/* Menú */}
         <div className="navbar-menu">
           <NavLink to="/" className="nav-link">
             Home
           </NavLink>
-          <a href="#RecetasContainer" className="nav-link">
-            Recetas
-          </a>
 
-          {/* Dropdown menu */}
           <div className="dropdown nav-link">
-            <a className="dropdown-toggle">Categorias</a>
+            <span className="dropdown-toggle">Categorías</span>
             <div className="dropdown-menu">
-              <NavLink to="/categoria/almacen" className="dropdown-item">
-                Almacen
-              </NavLink>
-              <NavLink
-                to="/categoria/cuidado-personal"
-                className="dropdown-item"
-              >
-                Cuidado personal
-              </NavLink>
-              <NavLink to="/categoria/panaderia" className="dropdown-item">
-                Panadería
-              </NavLink>
-              <NavLink to="/categoria/lacteos" className="dropdown-item">
-                Lacteos
-              </NavLink>
-              <NavLink to="/categoria/limpieza" className="dropdown-item">
-                Limpieza
-              </NavLink>
+              {categorias.length > 0 ? (
+                categorias.map((categoria) => (
+                  <NavLink
+                    key={categoria.id}
+                    to={`/categoria/${categoria.nombre}`}
+                    className="dropdown-item"
+                  >
+                    {categoria.nombre}
+                  </NavLink>
+                ))
+              ) : (
+                <p className="dropdown-item">Cargando...</p>
+              )}
             </div>
           </div>
-          <a href="#ContactoContainer" className="nav-link">
+          <NavLink to="/recetario" className="nav-link">
+            Recetario
+          </NavLink>
+          <NavLink to="/contacto" className="nav-link">
             Contacto
-          </a>
-
+          </NavLink>
         </div>
-
-        {/* Cart Widget */}
-        <div className="navbar-cart">
-          <CartWidget className="carrito-icon" />
+        <div className="navbar-actions">
+          <div className="navbar-cart">
+            <CartWidget />
+          </div>
+          <Link to={usuario ? "/admin" : "/login"} className="navbar-cart">
+            <FaUser className="carrito-icon" />
+          </Link>
         </div>
       </div>
     </nav>
