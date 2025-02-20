@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Indie+Flower&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Indie+Flower&display=swap');
 
 .dancing-script {
     font-family: 'Dancing Script', cursive;
@@ -7,7 +7,7 @@
   
   .indie-flower {
     font-family: 'Indie Flower', cursive;
-  }
+  } */
 
 .container h1{
   text-align: center;
@@ -33,6 +33,15 @@
   justify-content: center;
 } 
 
+.destacados-titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #ff9800;
+}
+
+
  .itemListContainer_greeting h1 {
   font-size: 4.5em;
   color: #ff0000; 
@@ -44,4 +53,28 @@
    
 }
 
- 
+.itemListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.ItemList_Container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.item {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+}

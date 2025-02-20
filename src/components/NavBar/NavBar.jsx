@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 
 const NavBar = () => {
-  const usuario = useAuth();
+  const { usuario, logout } = useAuth(); // Extraer usuario y función de logout del hook personalizado
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const NavBar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-brand">
-          <Link to="/" className="">
+          <Link to="/">
             <img src="../img/logo.svg" className="logo" alt="Logo" />
           </Link>
         </div>
@@ -50,8 +50,8 @@ const NavBar = () => {
               {categorias.length > 0 ? (
                 categorias.map((categoria) => (
                   <NavLink
-                    key={categoria.id}
-                    to={`/categoria/${categoria.nombre}`}
+                    key={categoria.idCat}  
+                    to={`/categoria/${categoria.nombre.toLowerCase()}`} 
                     className="dropdown-item"
                   >
                     {categoria.nombre}
@@ -69,13 +69,26 @@ const NavBar = () => {
             Contacto
           </NavLink>
         </div>
+
         <div className="navbar-actions">
           <div className="navbar-cart">
             <CartWidget />
           </div>
-          <Link to={usuario ? "/admin" : "/login"} className="navbar-cart">
-            <FaUser className="carrito-icon" />
-          </Link>
+
+          {usuario ? (
+            <>
+              <Link to="/admin" className="navbar-cart">
+                <FaUser className="carrito-icon" />
+              </Link>
+              <button className="logout-btn" onClick={logout}>
+                Cerrar Sesión
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="navbar-cart">
+              <FaUser className="carrito-icon" />
+            </Link>
+          )}
         </div>
       </div>
     </nav>

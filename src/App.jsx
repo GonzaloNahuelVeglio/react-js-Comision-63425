@@ -23,6 +23,7 @@ function App() {
       <CarritoProvider>
         <NavBar />
         <Routes>
+          <Route path="*" element={<Error />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AdminPanel />} /> 
           <Route path="/" element={<WithBanner><ItemListContainer /></WithBanner>} /> 
@@ -31,9 +32,8 @@ function App() {
           <Route path="/receta/:idReceta" element={<WithBanner><RecetaDetail /></WithBanner>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/contacto" element={<ContactoContainer />} />
           <Route path="/recetario" element={<RecetasContainer />} />
+          <Route path="/contacto" element={<ContactoContainer />} />
         </Routes>
         
         <ToTop />

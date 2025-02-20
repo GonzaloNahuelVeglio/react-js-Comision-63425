@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth"; // 🔹 Importamos el hook de autenticación
 import { useNavigate } from "react-router-dom";
 import {
   getDoc,
@@ -7,8 +8,6 @@ import {
   collection,
   updateDoc,
   deleteDoc,
-  addDoc,
-  setDoc,
 } from "firebase/firestore";
 import { db } from "../../services/config";
 import "./AdminPanel.css";
@@ -22,6 +21,8 @@ const AdminPanel = () => {
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState({});
+  const { logout } = useAuth();
+  const [busqueda, setBusqueda] = useState("");
 
   const obtenerCategorias = async () => {
     try {
@@ -76,6 +77,7 @@ const AdminPanel = () => {
 
     verificarAdmin();
   }, [navigate]);
+
   const [vista, setVista] = useState("productos");
 
   const obtenerProductos = async () => {
@@ -93,6 +95,10 @@ const AdminPanel = () => {
       console.error("Error obteniendo productos:", error);
     }
   };
+
+  const productosFiltrados = productos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
   const editarPrecio = async (id, nuevoPrecio) => {
     try {
@@ -187,7 +193,7 @@ const AdminPanel = () => {
         const stock = document.getElementById("swal-stock").value;
         const img = document.getElementById("swal-img").value;
         const detalle = document.getElementById("swal-detalle").value;
- 
+
         try {
           const nuevoId = await obtenerNuevoIdProducto();
           console.log("Nuevo ID:", nuevoId);
@@ -201,7 +207,6 @@ const AdminPanel = () => {
             throw new Error("El ID generado es inválido.");
           }
 
-
           await setDoc(doc(db, "inventario", nuevoId.toString()), {
             nombre,
             precio: Number(precio),
@@ -209,7 +214,7 @@ const AdminPanel = () => {
             stock: Number(stock),
             img,
             detalle,
-          }); 
+          });
           obtenerProductos();
           Swal.fire("Agregado", "El producto ha sido agregado", "success");
         } catch (error) {
@@ -263,10 +268,34 @@ const AdminPanel = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("userUser");
+        logout();
         navigate("/login");
       }
     });
+  };
+
+  const toggleDestacado = async (id, estadoActual) => {
+    try {
+      const productoRef = doc(db, "inventario", id);
+      await updateDoc(productoRef, { destacado: !estadoActual });
+
+      setProductos((prev) =>
+        prev.map((prod) =>
+          prod.id === id ? { ...prod, destacado: !estadoActual } : prod
+        )
+      );
+
+      Swal.fire(
+        "Actualizado",
+        `El producto ha sido ${
+          !estadoActual ? "destacado" : "quitado de destacados"
+        }`,
+        "success"
+      );
+    } catch (error) {
+      console.error("Error actualizando destacado:", error);
+      Swal.fire("Error", "No se pudo actualizar el producto", "error");
+    }
   };
 
   const editarProducto = (producto) => {
@@ -344,6 +373,14 @@ const AdminPanel = () => {
       {vista === "productos" ? (
         <div>
           <h3>Productos</h3>
+
+          <input
+            type="text"
+            placeholder="Buscar producto..."
+            value={busqueda}
+            className="swal2-input" 
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
           <button onClick={agregarProducto}>Nuevo Producto</button>
           <table border="1">
             <thead>
@@ -354,11 +391,12 @@ const AdminPanel = () => {
                 <th>Categoría</th>
                 <th>Stock</th>
                 <th>Imagen</th>
-                <th colSpan={2}>Acciones</th>
+                <th>Destacado</th>
+                <th colSpan={3}>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {productos.map((producto) => (
+              {productosFiltrados.map((producto) => (
                 <tr key={producto.id}>
                   <td>{producto.id}</td>
                   <td>{producto.nombre}</td>
@@ -370,6 +408,16 @@ const AdminPanel = () => {
                   <td>{producto.stock}</td>
                   <td>
                     <img src={producto.img} alt={producto.nombre} width="50" />
+                  </td>
+                  <td>{producto.destacado ? "✅ Sí" : "❌ No"}</td>
+                  <td>
+                    <button
+                      onClick={() =>
+                        toggleDestacado(producto.id, producto.destacado)
+                      }
+                    >
+                      {producto.destacado ? "Quitar Destacado" : "Destacar"}
+                    </button>
                   </td>
                   <td>
                     <button onClick={() => eliminarProducto(producto.id)}>

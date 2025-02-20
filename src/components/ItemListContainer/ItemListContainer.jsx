@@ -1,39 +1,97 @@
-import { useState, useEffect } from "react" 
-import ItemList from '../ItemList/ItemList'
-import './ItemListContainer.css'
-import { useParams } from 'react-router-dom'
+ import { useState, useEffect } from "react";
+import ItemList from '../ItemList/ItemList';
+import './ItemListContainer.css';
+import { useParams } from 'react-router-dom';
 import { db } from "../../services/config";
-import { collection, getDocs, where, query } from "firebase/firestore"
+import { collection, getDocs, where, query } from "firebase/firestore";
 
 const ItemListContainer = () => {
-  const [productos, setProductos] = useState([])
-
-  const { idCategoria } = useParams()
+  const [productos, setProductos] = useState([]);
+  const [destacados, setDestacados] = useState([]);
+  const { idCategoria } = useParams();
+  const [idCat, setIdCat] = useState(null);
 
   useEffect(() => {
-    const getProductos = idCategoria ? query(collection(db, "inventario"), where("idCat", "==", idCategoria)) : collection(db, "inventario");
+    if (idCategoria) {
+      const obtenerIdCat = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "categorias"));
+          const categoriaEncontrada = querySnapshot.docs.find(
+            (doc) => doc.data().nombre.toLowerCase() === idCategoria.toLowerCase()
+          );
 
-    getDocs(getProductos)
-      .then(res => {
-        const nuevosProductos = res.docs.map(doc => {
-          const data = doc.data();
-          return { id: doc.id, ...data }
-        });
+          if (categoriaEncontrada) {
+            setIdCat(categoriaEncontrada.data().idCat);
+          } else {
+            console.log("Categoría no encontrada en Firebase");
+          }
+        } catch (error) {
+          console.error("Error obteniendo categoría:", error);
+        }
+      };
+
+      obtenerIdCat();
+    } else {
+      setIdCat(null);
+    }
+  }, [idCategoria]);
+
+  useEffect(() => {
+    const getProductos = async () => {
+      try {
+        let productosQuery;
+        if (idCat !== null) {
+          productosQuery = query(collection(db, "inventario"), where("idCat", "==", idCat));
+        } else {
+          productosQuery = collection(db, "inventario");
+        }
+
+        const res = await getDocs(productosQuery);
+        const nuevosProductos = res.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setProductos(nuevosProductos);
-  })
-  .catch ((error) => console.log("Error ", error))
+      } catch (error) {
+        console.log("Error obteniendo productos:", error);
+      }
+    };
 
-   }, [idCategoria])
+    getProductos();
 
-return (
-  <div className="container itemListContainer">
-    <h1>Productos</h1>
-    {productos.length > 0 ? (
-      <ItemList productos={productos} />
-    ) : (
-      <p>No hay productos disponibles en esta categoría.</p>
-    )}
-  </div>
-)
-  }
-export default ItemListContainer 
+    const getDestacados = async () => {
+      try {
+        const destacadosQuery = query(collection(db, "inventario"), where("destacado", "==", true));
+        const res = await getDocs(destacadosQuery);
+        const productosDestacados = res.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setDestacados(productosDestacados);
+      } catch (error) {
+        console.log("Error obteniendo destacados:", error);
+      }
+    };
+
+    getDestacados();
+  }, [idCat]);
+
+  return (
+    <div className="container itemListContainer">
+      {destacados.length > 0 && (
+        <div>
+          <h2 className="destacados-titulo">Productos Destacados</h2>
+          <ItemList productos={destacados} />
+        </div>
+      )}
+      <h1>Productos</h1>
+      {productos.length > 0 ? (
+        <ItemList productos={productos} />
+      ) : (
+        <p>No hay productos disponibles en esta categoría.</p>
+      )}
+    </div>
+  );
+};
+
+export default ItemListContainer;
