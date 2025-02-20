@@ -1,30 +1,35 @@
- 
- .cartWidget span{
-     color: #fff;
-    margin-left: 5px; 
-    font-weight: bold;
-    font-size: 1.2rem;
- }
+/* CartWidget.css - Opción 1: Minimalista y Moderno */
 
 .cartWidget {
-    padding: 5px 10px;
-    border: 2px solid #df5b03;
-    border-radius: 10px;
+    padding: 8px 16px;
+    border-radius: 20px; /* Bordes redondeados */
     display: flex;
-    background-color:#e2630f;
-    align-content: center;
     align-items: center;
-}
-
-.cartWidget a {
-    text-decoration: none;
-}
-.cartWidget:hover {
-    background-color: #f26b0f;
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease;
+  }
+  
+  .cartWidget:hover {
+    background-color: #f8f8f8; /* Cambio de color al pasar el mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
     cursor: pointer;
-}
-
-.cartWidget .IconCart {
+  }
+  
+  .cartWidget span {
+    color: #333333; /* Texto oscuro */
+    margin-left: 8px;
+    font-weight: 600; /* Semi-bold */
+    font-size: 1.1rem;
+  }
+  
+  .cartWidget .IconCart {
     font-size: 1.8rem;
-    color: #fff;
-}
+    color: #333333; /* Ícono oscuro */
+  }
+  
+  .cartWidget a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }

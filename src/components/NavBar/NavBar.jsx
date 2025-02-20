@@ -4,11 +4,10 @@ import CartWidget from "../CartWidget/CartWidget";
 import { db } from "../../services/config";
 import { collection, getDocs } from "firebase/firestore";
 import "./NavBar.css";
-import { FaUser } from "react-icons/fa";
-import { useAuth } from "../../hooks/useAuth";
+import  UserWidget  from "../UserWidget/UserWidget";
+
 
 const NavBar = () => {
-  const { usuario, logout } = useAuth(); // Extraer usuario y función de logout del hook personalizado
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -50,8 +49,8 @@ const NavBar = () => {
               {categorias.length > 0 ? (
                 categorias.map((categoria) => (
                   <NavLink
-                    key={categoria.idCat}  
-                    to={`/categoria/${categoria.nombre.toLowerCase()}`} 
+                    key={categoria.idCat}
+                    to={`/categoria/${categoria.nombre.toLowerCase()}`}
                     className="dropdown-item"
                   >
                     {categoria.nombre}
@@ -75,20 +74,9 @@ const NavBar = () => {
             <CartWidget />
           </div>
 
-          {usuario ? (
-            <>
-              <Link to="/admin" className="navbar-cart">
-                <FaUser className="carrito-icon" />
-              </Link>
-              <button className="logout-btn" onClick={logout}>
-                Cerrar Sesión
-              </button>
-            </>
-          ) : (
-            <Link to="/login" className="navbar-cart">
-              <FaUser className="carrito-icon" />
-            </Link>
-          )}
+          <div className="navbar-user">
+          <UserWidget/>
+          </div>
         </div>
       </div>
     </nav>

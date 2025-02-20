@@ -1,24 +1,103 @@
-footer{
+footer {
     background-color: #f26b0f;
-    left: 0;
-    bottom: 0;
+    color: white;
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
     flex-direction: column;
-    align-content: center;
     align-items: center;
+    padding: 20px 0;
     margin-top: 20px;
-}
-
-footer img{
-    width: 150px;
-    height: 150px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  
+  /* Logo */
+  .footer-logo img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  /* Secciones del footer */
+  .footer-categorias,.footer-recetas,
+  .footer-links {
+    flex: 1;
     margin: 10px;
-}
-
-footer p span{ 
+  }
+  
+  .footer-categorias h3,
+  .footer-recetas h3,
+  .footer-links h3 {
+    font-size: 18px;
     font-weight: bold;
-}
+    margin-bottom: 10px;
+  }
+  
+  .footer-categorias ul,
+  .footer-recetas ul,
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-categorias li,
+  .footer-recetas li,
+  .footer-links li {
+    margin: 5px 0;
+  }
+  
+  .footer-categorias a,
+  .footer-recetas a, 
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-categorias a:hover,
+  .footer-recetas a:hover,
+  .footer-links a:hover {
+    color: #ffeeba;
+  }
+  
+  /* Pie del footer */
+  .footer-powered {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .footer-powered a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .footer-powered a:hover {
+    color: #ffeeba;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-categorias,
+    .footer-links {
+      width: 100%;
+    }
+  }
+  

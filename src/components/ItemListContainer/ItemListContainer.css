@@ -1,80 +1,126 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Indie+Flower&display=swap');
-
-.dancing-script {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700; 
-  }
-  
-  .indie-flower {
-    font-family: 'Indie Flower', cursive;
-  } */
-
-.container h1{
-  text-align: center;
-}
-
-.itemListContainer{ 
-  margin-top: 20px;
-  padding: 20px;
-}
-.itemListContainer_greeting {
-  font-weight: bold;
-  margin-bottom: 1rem; 
-  flex-direction: column;
-  align-items: center;
-  background: red; 
-  height: 55vh;
-  color: white;
-  background-image: url(./img/bg-navidad.jpg);
-  background-size: cover;
-  display: flex;
-  background-position: center;
-  align-content: center;
-  justify-content: center;
-} 
-
-.destacados-titulo {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-  color: #ff9800;
-}
-
-
- .itemListContainer_greeting h1 {
-  font-size: 4.5em;
-  color: #ff0000; 
-   
-}
- .itemListContainer_greeting h2 {
-  font-size: 1.5em;
-  color: #bb0000; 
-   
-}
-
+/* Contenedor general */
 .itemListContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
+  padding: 40px 10%;
+  background: #f9f9f9;
+  min-height: 100vh;
 }
 
-.ItemList_Container {
+/* Productos Destacados */
+.destacados-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Sección de productos y destacados con la misma grilla */
+.destacados-section .ItemList_Container,
+.productos-section .ItemList_Container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Muestra 4 productos por fila */
   gap: 20px;
   width: 100%;
   max-width: 1200px;
+  margin: auto;
 }
 
+/* Ajuste de productos destacados para mantener el tamaño */
+.destacados-section .item {
+  width: 100%;
+  max-width: 280px; /* Evita que el producto destacado ocupe toda la pantalla */
+  margin: auto;
+}
+
+/* Productos */
+.productos-section {
+  text-align: center;
+}
+
+.productos-titulo {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Mensaje si no hay productos */
+.no-productos {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Tarjetas de producto */
 .item {
   background: white;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 280px; /* Tamaño máximo de las tarjetas */
+  width: 100%;
+  margin: auto;
 }
 
 .item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen del producto */
+.item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Nombre del producto */
+.item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Precio del producto */
+.item p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* Botón de detalles */
+.item .btn {
+  background: #27ae60;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.item .btn:hover {
+  background: #219150;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .destacados-section .ItemList_Container,
+  .productos-section .ItemList_Container {
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .destacados-section .ItemList_Container,
+  .productos-section .ItemList_Container {
+    grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .destacados-section .ItemList_Container,
+  .productos-section .ItemList_Container {
+    grid-template-columns: repeat(1, 1fr); /* 1 producto por fila en pantallas pequeñas */
+  }
 }

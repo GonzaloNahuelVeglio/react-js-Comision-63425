@@ -8,12 +8,14 @@ import {
   collection,
   updateDoc,
   deleteDoc,
+  setDoc
 } from "firebase/firestore";
 import { db } from "../../services/config";
 import "./AdminPanel.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import ImportarRecetas from "../importarRecetas/ImportarRecetas";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -23,6 +25,9 @@ const AdminPanel = () => {
   const [categorias, setCategorias] = useState({});
   const { logout } = useAuth();
   const [busqueda, setBusqueda] = useState("");
+  //////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////
 
   const obtenerCategorias = async () => {
     try {
@@ -366,6 +371,8 @@ const AdminPanel = () => {
         </button>
       </div>
       <p>Bienvenido, admin</p>
+      <button onClick={ImportarRecetas}>Subir Recetas a Firebase</button>
+
       <div>
         <button onClick={() => setVista("productos")}>Ver Productos</button>
         <button onClick={() => setVista("pedidos")}>Ver Pedidos</button>

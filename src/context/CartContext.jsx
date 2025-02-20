@@ -1,24 +1,30 @@
-import { useState, createContext } from "react";
+import { useContext, useState, createContext } from "react";
 import Swal from "sweetalert2";
+
 export const CartContext = createContext({
   carrito: [],
   total: 0,
   cantidadTotal: 0,
+  agregarAlCarrito: () => {},
+  eliminarProducto: () => {},
+  vaciarCarrito: () => {},
 });
 
-export const CarritoProvider = ({children}) => {
+// Hook personalizado para usar el carrito en cualquier componente
+export const useCart = () => useContext(CartContext);
+
+export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   const [total, setTotal] = useState(0);
   const [cantidadTotal, setCantidadTotal] = useState(0);
- 
- 
+
   const agregarAlCarrito = (item, cantidad) => {
     const productoExistente = carrito.find((prod) => prod.item.id === item.id);
 
     if (!productoExistente) {
       setCarrito((prev) => [...prev, { item, cantidad }]);
       setCantidadTotal((prev) => prev + cantidad);
-      setTotal((prev) => prev + (item.precio * cantidad));
+      setTotal((prev) => prev + item.precio * cantidad);
     } else {
       const carritoActualizado = carrito.map((prod) => {
         if (prod.item.id === item.id) {
@@ -29,25 +35,36 @@ export const CarritoProvider = ({children}) => {
       });
       setCarrito(carritoActualizado);
       setCantidadTotal((prev) => prev + cantidad);
-      setTotal((prev) => prev + (item.precio * cantidad));
+      setTotal((prev) => prev + item.precio * cantidad);
     }
     Swal.fire({
       title: "¡Producto agregado!",
       text: `${cantidad}x ${item.nombre} agregado al carrito.`,
       icon: "success",
       confirmButtonText: "OK",
-      timer: 2000, // Se cierra automáticamente en 2 segundos
-  });
+      timer: 2000,
+    });
   };
 
   const eliminarProducto = (id) => {
-    const productoEliminado = carrito.find((prod) => prod.item.id === id);
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "El producto se eliminará del carrito.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const productoEliminado = carrito.find((prod) => prod.item.id === id);
 
-    const carritoActualizado = carrito.filter((prod) => prod.item.id !== id);
-    setCarrito(carritoActualizado);
+        const carritoActualizado = carrito.filter((prod) => prod.item.id !== id);
+        setCarrito(carritoActualizado);
 
-    setCantidadTotal((prev) => prev - productoEliminado.cantidad);
-    setTotal((prev) => prev - productoEliminado.item.precio * productoEliminado.cantidad);
+        setCantidadTotal((prev) => prev - productoEliminado.cantidad);
+        setTotal((prev) => prev - productoEliminado.item.precio * productoEliminado.cantidad);
+      }
+    });
   };
 
   const vaciarCarrito = (conConfirmacion = true) => {
@@ -68,17 +85,15 @@ export const CarritoProvider = ({children}) => {
         }
       });
     } else {
-       
       setCarrito([]);
       setCantidadTotal(0);
       setTotal(0);
     }
   };
-  
 
   return (
-    <CartContext.Provider value={{carrito, total, cantidadTotal, agregarAlCarrito, eliminarProducto, vaciarCarrito}}>
-        { children }
+    <CartContext.Provider value={{ carrito, total, cantidadTotal, agregarAlCarrito, eliminarProducto, vaciarCarrito }}>
+      {children}
     </CartContext.Provider>
   );
 };

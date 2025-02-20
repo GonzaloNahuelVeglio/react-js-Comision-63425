@@ -10,6 +10,7 @@ const ItemListContainer = () => {
   const [destacados, setDestacados] = useState([]);
   const { idCategoria } = useParams();
   const [idCat, setIdCat] = useState(null);
+  const [cuidadoPersonal, setCuidadoPersonal] = useState([]);
 
   useEffect(() => {
     if (idCategoria) {
@@ -74,24 +75,54 @@ const ItemListContainer = () => {
     };
 
     getDestacados();
+    
+    const getCuidadoPersonal = async () => {
+      try {
+        const cuidadoPersonalQuery = query(collection(db, "inventario"), where("idCat", "==", "4"));
+        const res = await getDocs(cuidadoPersonalQuery);
+        const productosCuidadoPersonal = res.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCuidadoPersonal(productosCuidadoPersonal);
+      } catch (error) {
+        console.log("Error obteniendo destacados:", error);
+      }
+    };
+
+    getCuidadoPersonal();
   }, [idCat]);
 
   return (
-    <div className="container itemListContainer">
+    <div className="itemListContainer">
+      {/* Sección de productos destacados */}
       {destacados.length > 0 && (
-        <div>
-          <h2 className="destacados-titulo">Productos Destacados</h2>
+        <section className="destacados-section">
+          <h2 className="destacados-titulo">✨ Productos Destacados</h2>
           <ItemList productos={destacados} />
-        </div>
+        </section>
       )}
-      <h1>Productos</h1>
-      {productos.length > 0 ? (
-        <ItemList productos={productos} />
-      ) : (
-        <p>No hay productos disponibles en esta categoría.</p>
-      )}
+
+      {/* Sección de productos */}
+      <section className="productos-section">
+        <h1 className="productos-titulo">🛒 Productos</h1>
+        {productos.length > 0 ? (
+          <ItemList productos={productos} />
+        ) : (
+          <p className="no-productos">No hay productos disponibles en esta categoría.</p>
+        )}
+      </section>
+      
+      {/* Sección de cuidado personal */}
+      <section className="productos-section">
+        <h2 className="productos-titulo">🧼 Cuidado Personal</h2>
+        {cuidadoPersonal.length > 0 ? (
+          <ItemList productos={cuidadoPersonal} />
+        ) : (
+          <p className="no-productos">No hay productos de cuidado personal disponibles.</p>
+        )}
+      </section>
     </div>
   );
 };
-
 export default ItemListContainer;

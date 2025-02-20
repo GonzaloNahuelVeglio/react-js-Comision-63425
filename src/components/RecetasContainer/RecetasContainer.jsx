@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getRecetas } from "../../asyncmock";
+import { db } from "../../services/config";
+import { collection, getDocs } from "firebase/firestore";
 import "./RecetasContainer.css";
 import Recetas from "../Recetas/Recetas"; 
 
@@ -7,7 +8,20 @@ const RecetasContainer = () => {
   const [recetas, setRecetas] = useState([]);
 
   useEffect(() => {
-    getRecetas().then((data) => setRecetas(data));
+    const obtenerRecetas = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "recetas"));
+        const recetasArray = querySnapshot.docs.map((doc) => ({
+          idReceta: doc.id, // ID de Firestore
+          ...doc.data(),
+        }));
+        setRecetas(recetasArray);
+      } catch (error) {
+        console.error("Error obteniendo recetas:", error);
+      }
+    };
+
+    obtenerRecetas();
   }, []);
 
   return (
@@ -20,15 +34,8 @@ const RecetasContainer = () => {
         </p>
       </div>
       <div className="recetasContainer container" id="recetas">
-        {recetas.map((receta) => (
-          <Recetas
-            key={receta.idReceta}
-            idReceta={receta.idReceta}
-            nombre={receta.nombre}
-            ingredientes={receta.ingredientes}
-            pasos={receta.pasos}
-            img={receta.img}
-          />
+                {recetas.map((receta) => (
+          <Recetas key={receta.idReceta} {...receta} />
         ))}
       </div> 
     </section>
