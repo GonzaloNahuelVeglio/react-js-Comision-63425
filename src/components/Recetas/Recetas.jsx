@@ -18,7 +18,9 @@ const Recetas = ({ idReceta, nombre, ingredientes, pasos, img }) => {
               <p>Ingredientes:</p>
               <ul>
                 {ingredientes.map((ingrediente, index) => (
-                  <li key={index}>{ingrediente}</li>
+                  <li key={index}>
+                    {ingrediente.producto} - {ingrediente.cantidad}
+                  </li>
                 ))}
               </ul>
 

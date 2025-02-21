@@ -8,7 +8,7 @@ import {
   collection,
   updateDoc,
   deleteDoc,
-  setDoc
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../../services/config";
 import "./AdminPanel.css";
@@ -16,6 +16,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import ImportarRecetas from "../importarRecetas/ImportarRecetas";
+import ImportarProductos from "../ImportarProductos/ImportarProductos";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -25,9 +26,6 @@ const AdminPanel = () => {
   const [categorias, setCategorias] = useState({});
   const { logout } = useAuth();
   const [busqueda, setBusqueda] = useState("");
-  //////////////////////////////////////////////////////////
-
-  //////////////////////////////////////////////////////////
 
   const obtenerCategorias = async () => {
     try {
@@ -325,6 +323,8 @@ const AdminPanel = () => {
         <input id="swal-stock" type="number" class="swal2-input" value="${producto.stock}">
         <label>Imagen</label>
         <input id="swal-img" class="swal2-input" value="${producto.img}">
+        <label>Detalle</label>
+        <input id="swal-detalle" class="swal2-input" value="${producto.detalle}">
       `,
       showCancelButton: true,
       confirmButtonText: "Guardar",
@@ -372,6 +372,7 @@ const AdminPanel = () => {
       </div>
       <p>Bienvenido, admin</p>
       <button onClick={ImportarRecetas}>Subir Recetas a Firebase</button>
+      <button onClick={ImportarProductos}>Subir Productos a Firebase</button>
 
       <div>
         <button onClick={() => setVista("productos")}>Ver Productos</button>
@@ -385,10 +386,11 @@ const AdminPanel = () => {
             type="text"
             placeholder="Buscar producto..."
             value={busqueda}
-            className="swal2-input" 
+            className="swal2-input"
             onChange={(e) => setBusqueda(e.target.value)}
           />
           <button onClick={agregarProducto}>Nuevo Producto</button>
+
           <table border="1">
             <thead>
               <tr>
@@ -409,13 +411,17 @@ const AdminPanel = () => {
                   <td>{producto.nombre}</td>
                   <td>${producto.precio}</td>
                   <td>
-                    {categorias[producto.categoria] ||
-                      "Categoría no encontrada"}
+                    {categorias[producto.idCat] || "Categoría no encontrada"}
                   </td>
                   <td>{producto.stock}</td>
                   <td>
-                    <img src={producto.img} alt={producto.nombre} width="50" />
+                    <img
+                      src={`../img/${producto.img}`}
+                      alt={producto.nombre}
+                      width="50"
+                    />
                   </td>
+
                   <td>{producto.destacado ? "✅ Sí" : "❌ No"}</td>
                   <td>
                     <button

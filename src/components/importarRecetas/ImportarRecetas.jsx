@@ -1,16 +1,16 @@
 import { collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../../services/config"; 
 
-const recetas = [ 
+const recetas = [
     {
         idReceta: "1",
         nombre: "Pan de Manteca",
         ingredientes: [
-            "500g de harina",
-            "250g de manteca",
-            "100g de azúcar",
-            "10g de sal",
-            "Levadura fresca"
+            { producto: "Harina", cantidad: "500g" },
+            { producto: "Manteca", cantidad: "250g" },
+            { producto: "Azúcar", cantidad: "100g" },
+            { producto: "Sal", cantidad: "10g" },
+            { producto: "Levadura", cantidad: "1 sobre" }
         ],
         pasos: [
             "Mezclar harina, sal y azúcar.",
@@ -25,12 +25,12 @@ const recetas = [
         idReceta: "2",
         nombre: "Pizza",
         ingredientes: [
-            "500g de harina",
-            "300ml de agua",
-            "10g de sal",
-            "10g de levadura",
-            "Salsa de tomate",
-            "Mozzarella"
+            { producto: "Harina", cantidad: "500g" },
+            { producto: "Agua", cantidad: "300ml" },
+            { producto: "Sal", cantidad: "10g" },
+            { producto: "Levadura", cantidad: "1 sobre" },
+            { producto: "Puré de tomate", cantidad: "Al gusto" },
+            { producto: "Mozzarella", cantidad: "Al gusto" }
         ],
         pasos: [
             "Mezclar la harina con la sal y la levadura disuelta en agua tibia.",
@@ -45,11 +45,11 @@ const recetas = [
         idReceta: "3",
         nombre: "Fideos con Tuco",
         ingredientes: [
-            "500g de fideos",
-            "500g de carne picada",
-            "1 cebolla",
-            "500ml de puré de tomate",
-            "Aceite de oliva"
+            { producto: "Fideos", cantidad: "500g" },
+            { producto: "Carne picada", cantidad: "500g" },
+            { producto: "Cebolla", cantidad: "1 unidad" },
+            { producto: "Puré de tomate", cantidad: "500ml" },
+            { producto: "Aceite de oliva", cantidad: "Al gusto" }
         ],
         pasos: [
             "Cocinar los fideos en agua con sal.",
@@ -64,12 +64,12 @@ const recetas = [
         idReceta: "4",
         nombre: "Tacos",
         ingredientes: [
-            "Tortillas de maíz",
-            "500g de carne (pollo, res o cerdo)",
-            "Lechuga",
-            "Tomate",
-            "Queso rallado",
-            "Salsa al gusto"
+            { producto: "Tortillas de maíz", cantidad: "Al gusto" },
+            { producto: "Carne (pollo, res o cerdo)", cantidad: "500g" },
+            { producto: "Lechuga", cantidad: "Al gusto" },
+            { producto: "Tomate", cantidad: "Al gusto" },
+            { producto: "Queso rallado", cantidad: "Al gusto" },
+            { producto: "Salsa", cantidad: "Al gusto" }
         ],
         pasos: [
             "Cocinar la carne con especias al gusto.",
@@ -84,12 +84,12 @@ const recetas = [
         idReceta: "5",
         nombre: "Empanadas",
         ingredientes: [
-            "Tapas para empanadas",
-            "500g de carne picada",
-            "1 cebolla",
-            "Aceitunas verdes",
-            "Huevos duros",
-            "Especias al gusto"
+            { producto: "Tapas para empanadas", cantidad: "Al gusto" },
+            { producto: "Carne picada", cantidad: "500g" },
+            { producto: "Cebolla", cantidad: "1 unidad" },
+            { producto: "Aceitunas verdes", cantidad: "Al gusto" },
+            { producto: "Huevos", cantidad: "2 unidades" },
+            { producto: "Especias", cantidad: "Al gusto" }
         ],
         pasos: [
             "Sofreír la cebolla y añadir la carne.",
@@ -102,17 +102,18 @@ const recetas = [
     }
 ];
 
-  const ImportarRecetas = async () => {
-  try {
-    for (let receta of recetas) {
-      const recetaRef = doc(collection(db, "recetas"), receta.idReceta);
-      await setDoc(recetaRef, receta);
-      console.log(`Receta ${receta.nombre} subida correctamente.`);
-    }
-    console.log("Recetas subidas correctamente.");
-  } catch (error) {
-    console.error("Error subiendo recetas:", error);
-  }
-};
 
-export default ImportarRecetas;
+const ImportarRecetas = async () => {
+    try {
+      for (let receta of recetas) {
+        const recetaRef = doc(db, "recetas", receta.idReceta);
+        await setDoc(recetaRef, receta);
+        console.log(`Receta ${receta.nombre} subida correctamente.`);
+      }
+      console.log("Todas las recetas fueron subidas correctamente.");
+    } catch (error) {
+      console.error("Error subiendo recetas:", error);
+    }
+  };
+  
+  export default ImportarRecetas;

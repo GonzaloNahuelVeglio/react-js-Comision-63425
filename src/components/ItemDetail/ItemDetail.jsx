@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 const ItemDetail = ({ id, nombre, precio, categoria, img, stock, detalle }) => {
   const [agregarCantidad, setAgregarCantidad] = useState(0);
   const { agregarAlCarrito } = useContext(CartContext);
-
+  const path = "../img/";
+const imgCompletePath = path + img;
   const manejadorCantidad = (cantidad) => {
     setAgregarCantidad(cantidad);
     const item = { id, nombre, precio };
@@ -20,7 +21,7 @@ const ItemDetail = ({ id, nombre, precio, categoria, img, stock, detalle }) => {
       <article className="itemDetail">
         <div className="itemDetail_">
           <div className="prodImg">
-            <img src={img} alt={nombre} loading="lazy" />
+            <img src={imgCompletePath} alt={nombre} loading="lazy" />
           </div>
           
           <div className="detalle">

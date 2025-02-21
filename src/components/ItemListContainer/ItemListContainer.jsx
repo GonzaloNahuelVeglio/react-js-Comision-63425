@@ -1,7 +1,7 @@
- import { useState, useEffect } from "react";
-import ItemList from '../ItemList/ItemList';
-import './ItemListContainer.css';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import ItemList from "../ItemList/ItemList";
+import "./ItemListContainer.css";
+import { useParams } from "react-router-dom";
 import { db } from "../../services/config";
 import { collection, getDocs, where, query } from "firebase/firestore";
 
@@ -10,7 +10,7 @@ const ItemListContainer = () => {
   const [destacados, setDestacados] = useState([]);
   const { idCategoria } = useParams();
   const [idCat, setIdCat] = useState(null);
-  const [cuidadoPersonal, setCuidadoPersonal] = useState([]);
+  const [frutasVerduras, setFrutasVerduras] = useState([]);
 
   useEffect(() => {
     if (idCategoria) {
@@ -18,7 +18,8 @@ const ItemListContainer = () => {
         try {
           const querySnapshot = await getDocs(collection(db, "categorias"));
           const categoriaEncontrada = querySnapshot.docs.find(
-            (doc) => doc.data().nombre.toLowerCase() === idCategoria.toLowerCase()
+            (doc) =>
+              doc.data().nombre.toLowerCase() === idCategoria.toLowerCase()
           );
 
           if (categoriaEncontrada) {
@@ -42,9 +43,15 @@ const ItemListContainer = () => {
       try {
         let productosQuery;
         if (idCat !== null) {
-          productosQuery = query(collection(db, "inventario"), where("idCat", "==", idCat));
+          productosQuery = query(
+            collection(db, "inventario"),
+            where("idCat", "==", idCat)
+          );
         } else {
-          productosQuery = collection(db, "inventario");
+          productosQuery = query(
+            collection(db, "inventario"),
+            where("idCat", "!=", "6")
+          );
         }
 
         const res = await getDocs(productosQuery);
@@ -62,7 +69,10 @@ const ItemListContainer = () => {
 
     const getDestacados = async () => {
       try {
-        const destacadosQuery = query(collection(db, "inventario"), where("destacado", "==", true));
+        const destacadosQuery = query(
+          collection(db, "inventario"),
+          where("destacado", "==", true)
+        );
         const res = await getDocs(destacadosQuery);
         const productosDestacados = res.docs.map((doc) => ({
           id: doc.id,
@@ -74,54 +84,65 @@ const ItemListContainer = () => {
       }
     };
 
-    getDestacados();
-    
-    const getCuidadoPersonal = async () => {
+    const getFrutasVerduras = async () => {
       try {
-        const cuidadoPersonalQuery = query(collection(db, "inventario"), where("idCat", "==", "4"));
-        const res = await getDocs(cuidadoPersonalQuery);
-        const productosCuidadoPersonal = res.docs.map((doc) => ({
+        const frutasVerdurasQuery = query(
+          collection(db, "inventario"),
+          where("idCat", "==", "6")
+        );
+        const res = await getDocs(frutasVerdurasQuery);
+        const productosFrutasVerduras = res.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setCuidadoPersonal(productosCuidadoPersonal);
+        setFrutasVerduras(productosFrutasVerduras);
       } catch (error) {
-        console.log("Error obteniendo destacados:", error);
+        console.log("Error obteniendo frutas y verduras:", error);
       }
     };
 
-    getCuidadoPersonal();
+    // 🔹 Si NO hay categoría seleccionada, se muestran destacados y frutas y verduras
+    if (!idCat) {
+      getDestacados();
+      getFrutasVerduras();
+    } else {
+      // 🔹 Si hay una categoría seleccionada, se ocultan destacados y frutas y verduras
+      setDestacados([]);
+      setFrutasVerduras([]);
+    }
   }, [idCat]);
 
   return (
     <div className="itemListContainer">
-      {/* Sección de productos destacados */}
-      {destacados.length > 0 && (
+      {/* 🔹 Mostrar productos destacados SOLO si NO hay categoría seleccionada */}
+      {!idCat && destacados.length > 0 && (
         <section className="destacados-section">
           <h2 className="destacados-titulo">✨ Productos Destacados</h2>
           <ItemList productos={destacados} />
         </section>
       )}
 
-      {/* Sección de productos */}
+      {/* 🔹 Mostrar título dinámico según si hay categoría seleccionada */}
       <section className="productos-section">
-        <h1 className="productos-titulo">🛒 Productos</h1>
+        <h1 className="productos-titulo">
+          {idCat ? `Categoría: ${idCategoria}` : "🛒 Productos"}
+        </h1>
         {productos.length > 0 ? (
           <ItemList productos={productos} />
         ) : (
-          <p className="no-productos">No hay productos disponibles en esta categoría.</p>
+          <p className="no-productos">
+            No hay productos disponibles en esta categoría.
+          </p>
         )}
       </section>
-      
-      {/* Sección de cuidado personal */}
-      <section className="productos-section">
-        <h2 className="productos-titulo">🧼 Cuidado Personal</h2>
-        {cuidadoPersonal.length > 0 ? (
-          <ItemList productos={cuidadoPersonal} />
-        ) : (
-          <p className="no-productos">No hay productos de cuidado personal disponibles.</p>
-        )}
-      </section>
+
+      {/* 🔹 Mostrar frutas y verduras SOLO si NO hay categoría seleccionada */}
+      {!idCat && frutasVerduras.length > 0 && (
+        <section className="productos-section">
+          <h2 className="productos-titulo">Frutas y Verduras</h2>
+          <ItemList productos={frutasVerduras} />
+        </section>
+      )}
     </div>
   );
 };

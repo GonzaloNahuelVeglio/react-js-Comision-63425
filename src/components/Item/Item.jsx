@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Item = ({ id, nombre, idCat, precio, img }) => {
   const [nombreCategoria, setNombreCategoria] = useState("Cargando...");
-
+const path = `../img/`;
+const imgComplete = path + img;
   useEffect(() => {
     const obtenerNombreCategoria = async () => {
       try {
@@ -30,7 +31,7 @@ const Item = ({ id, nombre, idCat, precio, img }) => {
 
   return (
     <div className='item'>
-        <img src={img} className="product" alt={nombre} />
+        <img src={imgComplete} className="product" alt={nombre} />
        <div className='d-flex flex-column '> 
          <h3>{nombre}</h3>  
          <Badge bg="success">{nombreCategoria}</Badge> {/* Muestra el nombre real */}
