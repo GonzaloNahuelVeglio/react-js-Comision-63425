@@ -1,9 +1,9 @@
-import { initializeApp } from "firebase/app"; 
-import { getFirestore } from "firebase/firestore";
-
+ import { initializeApp } from "firebase/app"; 
+import { getFirestore } from "firebase/firestore"; 
+ 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBuzl_VnXtTXIm_henOvuBEwb0g7xa_rHo",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "tienda-online-803bc.firebaseapp.com",
   projectId: "tienda-online-803bc",
   storageBucket: "tienda-online-803bc.firebasestorage.app",
