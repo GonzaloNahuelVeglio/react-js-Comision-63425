@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../hooks/useAuth"; // 🔹 Importamos el hook de autenticación
+import { useAuth } from "../../hooks/useAuth";  
 import { useNavigate } from "react-router-dom";
 import {
   getDoc,
@@ -195,13 +195,13 @@ const AdminPanel = () => {
         const idCat = document.getElementById("swal-categoria").value;
         const stock = document.getElementById("swal-stock").value;
         const img = document.getElementById("swal-img").value;
-        const detalle = document.getElementById("swal-detalle").value;
+        const descripcion = document.getElementById("swal-detalle").value;
 
         try {
           const nuevoId = await obtenerNuevoIdProducto();
           console.log("Nuevo ID:", nuevoId);
 
-          if (!nombre || !precio || !idCat || !stock || !img || !detalle) {
+          if (!nombre || !precio || !idCat || !stock || !img || !descripcion) {
             Swal.fire("Error", "Todos los campos son requeridos", "error");
             return;
           }
@@ -216,7 +216,7 @@ const AdminPanel = () => {
             idCat,
             stock: Number(stock),
             img,
-            detalle,
+            descripcion: descripcion,
           });
           obtenerProductos();
           Swal.fire("Agregado", "El producto ha sido agregado", "success");
@@ -324,7 +324,7 @@ const AdminPanel = () => {
         <label>Imagen</label>
         <input id="swal-img" class="swal2-input" value="${producto.img}">
         <label>Detalle</label>
-        <input id="swal-detalle" class="swal2-input" value="${producto.detalle}">
+        <input id="swal-detalle" class="swal2-input" value="${producto.descripcion}">
       `,
       showCancelButton: true,
       confirmButtonText: "Guardar",

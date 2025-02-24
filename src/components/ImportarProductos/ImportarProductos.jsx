@@ -1,3 +1,5 @@
+// Este script lo genere unicamente para facilitar la carga de datos de manera masiva a Firebase
+
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../services/config"; 
 
@@ -399,12 +401,12 @@ const productos = [
 const ImportarProductos = async () => {
     try {
         const promesas = productos.map(async (producto) => {
-            const productoRef = doc(db, "inventario", producto.idItem); // ID correcto
+            const productoRef = doc(db, "inventario", producto.idItem);  
             await setDoc(productoRef, producto);
             console.log(`Producto ${producto.nombre} subido correctamente.`);
         });
 
-        await Promise.all(promesas); // Espera a que todas las promesas terminen
+        await Promise.all(promesas);  
         console.log("Todos los productos fueron subidos correctamente.");
     } catch (error) {
         console.error("Error subiendo productos:", error);

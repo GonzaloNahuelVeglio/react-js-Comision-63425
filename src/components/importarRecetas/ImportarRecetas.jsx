@@ -1,3 +1,5 @@
+// Este script lo genere unicamente para facilitar la carga de datos de manera masiva a Firebase
+
 import { collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../../services/config"; 
 

@@ -12,7 +12,7 @@ const RecetasContainer = () => {
       try {
         const querySnapshot = await getDocs(collection(db, "recetas"));
         const recetasArray = querySnapshot.docs.map((doc) => ({
-          idReceta: doc.id, // ID de Firestore
+          idReceta: doc.id,  
           ...doc.data(),
         }));
         setRecetas(recetasArray);

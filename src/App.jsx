@@ -42,8 +42,7 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// Nuevo componente que usa useLocation() dentro de Routes
+ 
 function WithBanner({ children }) {
   const location = useLocation();
   const ocultarBanner = location.pathname.includes("/item/") || location.pathname === "/cart" || location.pathname === "/checkout";

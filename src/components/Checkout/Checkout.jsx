@@ -4,7 +4,7 @@ import { CartContext } from "../../context/CartContext";
 import { collection, addDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import "./Checkout.css"; // Importamos los estilos
+import "./Checkout.css";  
 
 const Checkout = () => {
   const { carrito, vaciarCarrito, total } = useContext(CartContext);

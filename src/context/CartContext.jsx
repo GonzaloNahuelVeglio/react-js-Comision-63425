@@ -9,8 +9,7 @@ export const CartContext = createContext({
   eliminarProducto: () => {},
   vaciarCarrito: () => {},
 });
-
-// Hook personalizado para usar el carrito en cualquier componente
+ 
 export const useCart = () => useContext(CartContext);
 
 export const CarritoProvider = ({ children }) => {

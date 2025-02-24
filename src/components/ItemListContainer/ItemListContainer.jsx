@@ -101,12 +101,12 @@ const ItemListContainer = () => {
       }
     };
 
-    // 🔹 Si NO hay categoría seleccionada, se muestran destacados y frutas y verduras
+     
     if (!idCat) {
       getDestacados();
       getFrutasVerduras();
     } else {
-      // 🔹 Si hay una categoría seleccionada, se ocultan destacados y frutas y verduras
+       
       setDestacados([]);
       setFrutasVerduras([]);
     }

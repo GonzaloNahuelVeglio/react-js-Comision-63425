@@ -39,7 +39,7 @@ const RecetaDetail = () => {
         );
 
         if (productoEncontrado) {
-          agregarAlCarrito(productoEncontrado, 1); // Agregamos 1 por defecto (se puede mejorar)
+          agregarAlCarrito(productoEncontrado, 1); 
         } else {
           console.warn(`Producto no encontrado en inventario: ${ingrediente.producto}`);
         }

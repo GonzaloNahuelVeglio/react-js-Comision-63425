@@ -207,9 +207,7 @@ export const getCategoria = (categoria) => {
         }, 100);
     });
 };
-
-
-// RECETARIO
+ 
 
 const recetas = [ 
     {

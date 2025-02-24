@@ -29,8 +29,7 @@ const Contacto = () => {
       );
       setRespuesta("Mensaje enviado correctamente");
       setError(false);
-      
-      // Limpiar formulario
+       
       setEmail("");
       setNombre("");
       setMensaje("");
